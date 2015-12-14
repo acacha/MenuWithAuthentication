@@ -10,7 +10,7 @@ MenuWithAuthentication::menu('home')
     ->title('Home')
     ->icon('fa-dashboard')
     ->url('/home')
-    ->rol('home')
+    ->role('home')
     ->permission('home')
     ->user('sergitur');
 
@@ -23,8 +23,8 @@ MenuWithAuthentication::menu('anotlink')
 //Multilevel
 MenuWithAuthentication::menu('multi')->title('Multilevel')->icon('fa-credit-card');
 
- MenuWithAuthentication::menu('link2')->title('Link in level 2')->icon('fa-briefcase');
- MenuWithAuthentication::menu('link3')->title('Link in level 2')->icon('fa-user');
+MenuWithAuthentication::menu('link2')->title('Link in level 2')->icon('fa-briefcase');
+MenuWithAuthentication::menu('link3')->title('Link in level 2')->icon('fa-user');
 
 MenuWithAuthentication::menu('link4')
     ->title('Últim menú')

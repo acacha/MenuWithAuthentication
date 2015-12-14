@@ -218,7 +218,7 @@ class MenuItem
 
     /**
      * Get or set menu item subitems
-     * @return $this|MenuItem[]
+     *
      */
     public function items()
     {

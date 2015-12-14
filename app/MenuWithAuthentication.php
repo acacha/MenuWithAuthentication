@@ -52,7 +52,8 @@ class MenuWithAuthentication
      */
     public function getMenu()
     {
-        return $this->menu->items();
+        return array();
+        //return $this->menu->items();
     }
 
 }
