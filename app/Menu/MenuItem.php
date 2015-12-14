@@ -40,9 +40,27 @@ class MenuItem
     protected $user;
 
     /**
+     * Current menu item
+     * @var MenuItem
+     */
+    public static $current;
+
+    /**
      * @var
      */
     private $id;
+
+    /**
+     * Menu item depth level
+     * @var int
+     */
+    protected $level;
+
+    /**
+     * Menu item subitems
+     * @var MenuItem[]
+     */
+    protected $subItems = [];
 
     /**
      * MenuItem constructor.
@@ -51,6 +69,42 @@ class MenuItem
     {
 
         $this->id = $id;
+
+        if (is_null(static::$current))
+        {
+            static::$current = $this;
+            $this->level(0);
+        } else
+        {
+            static::$current->addItem($this);
+            $this->level(static::$current->level() + 1);
+        }
+    }
+
+    /**
+     * Add subitem
+     * @param MenuItem $item
+     * @return $this
+     */
+    public function addItem($item)
+    {
+        $this->subItems[] = $item;
+        return $this;
+    }
+
+    /**
+     * Get or set menu item depth level
+     * @param int|null $level
+     * @return $this|int
+     */
+    public function level($level = null)
+    {
+        if ($level == null)
+        {
+            return $this->level;
+        }
+        $this->level = $level;
+        return $this;
     }
 
     /**
@@ -160,5 +214,17 @@ class MenuItem
 //        $data['user'] = $this->user;
 
         return (String) view('menu.menuitem',$data);
+    }
+
+    /**
+     * Get or set menu item subitems
+     * @return $this|MenuItem[]
+     */
+    public function items()
+    {
+        $old = static::$current;
+        static::$current = $this;
+        static::$current = $old;
+        return $this;
     }
 }

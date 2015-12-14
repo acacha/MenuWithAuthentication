@@ -22,13 +22,10 @@ class MenuWithAuthentication
      */
     protected $menu;
 
-
-//    /**
-//     * MenuWithAuthentication constructor.
-//     */
-//    public function __construct()
-//    {
-//    }
+    function __construct($id)
+    {
+        $this->menu = static::menu($id);
+    }
 
     /**
      * @param $id
@@ -42,10 +39,10 @@ class MenuWithAuthentication
     /**
      * @return null|static
      */
-    public static function instance()
+    public static function instance($id)
     {
         if ( is_null(static::$instance) ) {
-            return static::$instance = new static;
+            return static::$instance = new static($id);
         }
         return static::$instance;
     }
